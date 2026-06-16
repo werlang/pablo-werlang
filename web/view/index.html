@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{pageTitle}}</title>
+    <meta name="description" content="Portfolio de desenvolvimento e perfil academico de Pablo Werlang, professor no IFSul Campus Charqueadas.">
+    <link rel="stylesheet" href="/css/index.min.css">
+</head>
+<body>
+    {{{template-vars}}}
+    <header class="site-header" data-nav-root>
+        <a class="brand" href="#top" aria-label="Ir para o inicio">PW</a>
+        <nav class="site-nav" aria-label="Navegacao principal">
+            <a href="#projetos">Projetos</a>
+            <a href="#stack">Stack</a>
+            <a href="#ensino">Ensino</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <main id="frame">
+        <section id="top" class="hero-section">
+            <div class="hero-copy">
+                <p class="eyebrow">Desenvolvedor full-stack | Professor no IFSul Charqueadas</p>
+                <h1>{{heading}}</h1>
+                <p class="hero-lead">Construo plataformas web, sistemas de avaliacao automatizada, ferramentas educacionais e produtos digitais usados em contexto real de ensino, eventos e infraestrutura.</p>
+                <div class="hero-actions" aria-label="Links principais">
+                    <a class="button primary" href="https://github.com/werlang/">GitHub <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                    <a class="button secondary" href="http://lattes.cnpq.br/6490709711099792">Lattes <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <aside class="profile-panel" aria-label="Resumo profissional">
+                <img class="profile-photo" src="https://github.com/werlang.png" alt="Foto de perfil de Pablo Werlang">
+                <div>
+                    <p class="profile-name">Pablo Werlang</p>
+                    <p class="profile-role">Software, educacao e automacao para resolver trabalho concreto.</p>
+                </div>
+                <dl class="profile-facts">
+                    <div>
+                        <dt>Base</dt>
+                        <dd>Charqueadas, RS</dd>
+                    </div>
+                    <div>
+                        <dt>GitHub</dt>
+                        <dd>werlang</dd>
+                    </div>
+                    <div>
+                        <dt>Foco</dt>
+                        <dd>Web, devtools, educacao</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+
+        <section id="projetos" class="section-band">
+            <div class="section-heading">
+                <p class="eyebrow">Portfolio dev</p>
+                <h2>Projetos em andamento</h2>
+                <p>Trabalhos que combinam produto, backend, frontend, automacao, avaliacao e operacao.</p>
+            </div>
+
+            <div class="project-grid">
+                <article class="project-card featured">
+                    <div class="card-topline">
+                        <i class="fa-solid fa-code" aria-hidden="true"></i>
+                        <span>Code battle platform</span>
+                    </div>
+                    <h3>GladCode</h3>
+                    <p>Sistema de batalha de gladiadores virtuais programaveis, com historico longo de produto, simulacao, web app e infraestrutura.</p>
+                    <div class="tag-list">
+                        <span>JavaScript</span>
+                        <span>Simulacao</span>
+                        <span>Educacao</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-topline">
+                        <i class="fa-solid fa-gavel" aria-hidden="true"></i>
+                        <span>Online judge</span>
+                    </div>
+                    <h3>AutoJudge</h3>
+                    <p>Plataforma para contests de programacao, submissao de solucoes, ranking e avaliacao automatizada em multiplas linguagens.</p>
+                    <div class="tag-list">
+                        <span>Docker</span>
+                        <span>Node.js</span>
+                        <span>Judge</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-topline">
+                        <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                        <span>Blockchain data</span>
+                    </div>
+                    <h3>Owlracle</h3>
+                    <p>Oracle multi-rede para estimativas de gas, scanners por rede, Redis, API HTTP e bots para distribuicao de dados.</p>
+                    <div class="tag-list">
+                        <span>Web3</span>
+                        <span>Redis</span>
+                        <span>API</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-topline">
+                        <i class="fa-solid fa-flask" aria-hidden="true"></i>
+                        <span>Evento cientifico</span>
+                    </div>
+                    <h3>MOCITEC</h3>
+                    <p>Aplicacao hibrida para submissao de projetos, avaliacao, credenciamento, anais e certificados verificaveis.</p>
+                    <div class="tag-list">
+                        <span>PHP</span>
+                        <span>Express</span>
+                        <span>MySQL</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-topline">
+                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                        <span>IFSul tooling</span>
+                    </div>
+                    <h3>TrocaAula</h3>
+                    <p>Ferramenta para visualizar, ajustar e propor trocas de horarios com dados do EduPage, cache Redis e fluxo de aprovacao.</p>
+                    <div class="tag-list">
+                        <span>Express</span>
+                        <span>Redis</span>
+                        <span>EduPage</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="stack" class="split-section">
+            <div class="section-heading compact">
+                <p class="eyebrow">Como trabalho</p>
+                <h2>Da ideia ao sistema em producao</h2>
+            </div>
+            <div class="stack-list">
+                <article>
+                    <h3>Arquitetura web</h3>
+                    <p>Express, APIs REST, renderizacao server-side, SPAs pragmaticas, MySQL, Redis, containers e automacoes de deploy.</p>
+                </article>
+                <article>
+                    <h3>Ferramentas para ensino</h3>
+                    <p>Exercicios, provas, corretores, sistemas de contest e materiais que aproximam fundamentos de programacao de praticas reais.</p>
+                </article>
+                <article>
+                    <h3>Operacao e manutencao</h3>
+                    <p>Backups, observabilidade simples, tuning de runtimes, ambientes Docker e documentacao operacional para reduzir atrito.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="ensino" class="teaching-section">
+            <div class="teaching-copy">
+                <p class="eyebrow">Perfil academico</p>
+                <h2>Professor de Programacao Web I</h2>
+                <p>Atualmente mantenho a disciplina de Programacao Web I no IFSul, com materiais, exercicios e avaliacoes centrados em JavaScript, DOM, eventos, arrays, objetos e persistencia no navegador.</p>
+            </div>
+            <div class="teaching-links">
+                <a href="https://werlang.github.io/pw1/exercicios/">
+                    <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                    Exercicios PW1
+                </a>
+                <a href="https://github.com/werlang/pw1">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    Repositorio da disciplina
+                </a>
+            </div>
+        </section>
+
+        <section id="contato" class="contact-section">
+            <div>
+                <p class="eyebrow">Links</p>
+                <h2>Codigo, curriculo e presenca publica</h2>
+            </div>
+            <div class="contact-links">
+                <a href="https://github.com/werlang/"><i class="fa-brands fa-github" aria-hidden="true"></i> github.com/werlang</a>
+                <a href="http://lattes.cnpq.br/6490709711099792"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Curriculo Lattes</a>
+                <a href="https://autojudge.io"><i class="fa-solid fa-gavel" aria-hidden="true"></i> autojudge.io</a>
+                <a href="https://owlracle.info"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> owlracle.info</a>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <span>Pablo Werlang</span>
+        <span>Desenvolvimento, ensino e sistemas web</span>
+    </footer>
+    <script src="/js/index.min.js"></script>
+</body>
+</html>
