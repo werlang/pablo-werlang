@@ -73,15 +73,4 @@ export default {
     },
     devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-    devServer: {
-        hot: true,
-        port: 80,
-        allowedHosts: 'all',
-        proxy: [
-            {
-                context: '/',
-                target: 'http://localhost:3000',
-            },
-        ],
-    },
 };

@@ -1,7 +1,4 @@
 services:
-    web:
-        environment:
-            - API_URL=http://api:3000
     playwright:
         build:
             context: ./web

@@ -1,8 +1,5 @@
 import '../css/index.css';
 
-import TemplateVar from './helpers/template-var.js';
-
-const navRoot = document.querySelector('[data-nav-root]');
 const navLinks = [...document.querySelectorAll('.site-nav a')];
 const observedSections = navLinks
     .map(link => document.querySelector(link.hash))
@@ -12,7 +9,7 @@ const observedSections = navLinks
  * Highlights the navigation entry that matches the section most visible in the viewport.
  */
 function bindSectionHighlighter() {
-    if (!('IntersectionObserver' in window) || !navRoot) {
+    if (!('IntersectionObserver' in window) || navLinks.length === 0) {
         return;
     }
 
@@ -36,5 +33,4 @@ function bindSectionHighlighter() {
     observedSections.forEach(section => observer.observe(section));
 }
 
-document.documentElement.dataset.appName = TemplateVar.get('appName');
 bindSectionHighlighter();
