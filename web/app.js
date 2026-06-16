@@ -24,10 +24,8 @@ app.use((req, res) => {
     res.status(404).send('Not found');
 });
 
-if (process.env.NODE_ENV !== 'test') {
-    app.listen(port, host, () => {
-        console.log(`Pablo Werlang portfolio listening at http://${host}:${port}`);
-    });
-}
+app.listen(port, host, () => {
+    console.log(`Pablo Werlang portfolio listening at http://${host}:${port}`);
+});
 
 export default app;
