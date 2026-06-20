@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{pageTitle}}</title>
-    <meta name="description" content="Portfolio de desenvolvimento e perfil academico de Pablo Werlang, professor no IFSul Campus Charqueadas.">
+    <meta name="description" content="Portfolio de desenvolvimento e perfil acadêmico de Pablo Werlang, professor no IFSul Campus Charqueadas.">
     <link rel="stylesheet" href="/css/index.min.css">
     <script type="module" src="/js/index.min.js"></script>
 </head>
@@ -24,7 +24,7 @@
             <div class="hero-copy">
                 <p class="eyebrow">Desenvolvedor full-stack | Professor no IFSul Charqueadas</p>
                 <h1>{{heading}}</h1>
-                <p class="hero-lead">Construo plataformas web, sistemas de avaliacao automatizada, ferramentas educacionais e produtos digitais usados em contexto real de ensino, eventos e infraestrutura.</p>
+                <p class="hero-lead">Construo plataformas web, sistemas REPL (Read-Eval-Print Loop), automações, ferramentas educacionais e produtos digitais usados em contexto real de ensino, eventos e infraestrutura.</p>
                 <div class="hero-actions" aria-label="Links principais">
                     <a class="button primary" href="https://github.com/werlang/">GitHub <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                     <a class="button secondary" href="http://lattes.cnpq.br/6490709711099792">Lattes <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
@@ -34,7 +34,7 @@
                 <img class="profile-photo" src="https://github.com/werlang.png" alt="Foto de perfil de Pablo Werlang">
                 <div>
                     <p class="profile-name">Pablo Werlang</p>
-                    <p class="profile-role">Software, educacao e automacao para resolver trabalho concreto.</p>
+                    <p class="profile-role">Software, educação e automação para resolver problemas reais.</p>
                 </div>
                 <dl class="profile-facts">
                     <div>
@@ -47,7 +47,7 @@
                     </div>
                     <div>
                         <dt>Foco</dt>
-                        <dd>Web, devtools, educacao</dd>
+                        <dd>Web, devtools, educação</dd>
                     </div>
                 </dl>
             </aside>
@@ -57,35 +57,66 @@
             <div class="section-heading">
                 <p class="eyebrow">Portfolio dev</p>
                 <h2>Projetos em andamento</h2>
-                <p>Trabalhos que combinam produto, backend, frontend, automacao, avaliacao e operacao.</p>
+                <p>Trabalhos que combinam produto, backend, frontend, automação, avaliação e operação.</p>
             </div>
 
             <div class="project-grid">
                 <article class="project-card featured">
                     <div class="card-topline">
-                        <i class="fa-solid fa-code" aria-hidden="true"></i>
-                        <span>Code battle platform</span>
+                        <i class="fa-solid fa-gavel" aria-hidden="true"></i>
+                        <span>Online judge</span>
                     </div>
-                    <h3>GladCode</h3>
-                    <p>Sistema de batalha de gladiadores virtuais programaveis, com historico longo de produto, simulacao, web app e infraestrutura.</p>
+                    <h3><a href="https://autojudge.io" target="_blank" rel="noopener noreferrer">AutoJudge<i class="fa-solid fa-arrow-up-right-from-square link-icon" aria-hidden="true"></i></a></h3>
+                    <p>Plataforma para competições de programacao, submissao de solucoes, ranking e avaliacao automatizada em multiplas linguagens, ambiente de desenvolvimento integrado, e extensão para VS Code. Utilizado no nosso evento de programação, a CharCode.</p>
+                    <div class="project-links" aria-label="Repositorios e extensoes do AutoJudge">
+                        <a href="https://github.com/werlang/autojudge" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            Repositório Público
+                        </a>
+                        <a href="https://github.com/werlang/autojudge-extension" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            Extensão VS Code Code Runner
+                        </a>
+                        <a href="https://github.com/werlang/autojudge-contest" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            Extensão VS Code para competições
+                        </a>
+                        <a href="https://marketplace.visualstudio.com/publishers/autojudge" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-store" aria-hidden="true"></i>
+                            Marketplace
+                        </a>
+                        <div class="project-links" aria-label="Repositorio do MOCITEC">
+                        <span class="project-link-note">
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            Repo privado
+                        </span>
+                    </div>
+                    </div>
                     <div class="tag-list">
-                        <span>JavaScript</span>
-                        <span>Simulacao</span>
-                        <span>Educacao</span>
+                        <span>REPL</span>
+                        <span>Competição</span>
+                        <span>Dev</span>
                     </div>
                 </article>
 
                 <article class="project-card">
                     <div class="card-topline">
-                        <i class="fa-solid fa-gavel" aria-hidden="true"></i>
-                        <span>Online judge</span>
+                        <i class="fa-solid fa-code" aria-hidden="true"></i>
+                        <span>Code battle platform</span>
                     </div>
-                    <h3>AutoJudge</h3>
-                    <p>Plataforma para contests de programacao, submissao de solucoes, ranking e avaliacao automatizada em multiplas linguagens.</p>
+                    <h3><a href="https://gladcode.dev" target="_blank" rel="noopener noreferrer">GladCode<i class="fa-solid fa-arrow-up-right-from-square link-icon" aria-hidden="true"></i></a></h3>
+                    <p>Sistema de batalha de gladiadores virtuais programáveis, com ambiente de desenvolvimento integrado, simulacao de batalhas. Usado para ensino e eventos de programação.</p>
+                    <div class="project-links" aria-label="Repositorio do GladCode">
+                        <a href="https://github.com/werlang/gladcode2" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            GitHub
+                        </a>
+                    </div>
                     <div class="tag-list">
-                        <span>Docker</span>
-                        <span>Node.js</span>
-                        <span>Judge</span>
+                        <span>Educação</span>
+                        <span>Simulação</span>
+                        <span>Dev</span>
+                        <span>RPG</span>
                     </div>
                 </article>
 
@@ -94,26 +125,42 @@
                         <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
                         <span>Blockchain data</span>
                     </div>
-                    <h3>Owlracle</h3>
-                    <p>Oracle multi-rede para estimativas de gas, scanners por rede, Redis, API HTTP e bots para distribuicao de dados.</p>
+                    <h3><a href="https://owlracle.info" target="_blank" rel="noopener noreferrer">Owlracle<i class="fa-solid fa-arrow-up-right-from-square link-icon" aria-hidden="true"></i></a></h3>
+                    <p>Oráculo multi-rede para estimativas de preço de gás de redes EVM. API HTTP e bots para distribuição de dados.</p>
+                    <div class="project-links" aria-label="Repositorio do Owlracle">
+                        <a href="https://github.com/werlang/bscgas" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        Projeto Base
+                        </a>
+                    </div>
+                    <div class="project-links" aria-label="Repositorio do MOCITEC">
+                        <span class="project-link-note">
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            Repo privado
+                        </span>
+                    </div>
                     <div class="tag-list">
                         <span>Web3</span>
-                        <span>Redis</span>
                         <span>API</span>
+                        <span>Blockchain</span>
                     </div>
                 </article>
 
                 <article class="project-card">
                     <div class="card-topline">
                         <i class="fa-solid fa-flask" aria-hidden="true"></i>
-                        <span>Evento cientifico</span>
+                        <span>Evento científico</span>
                     </div>
-                    <h3>MOCITEC</h3>
-                    <p>Aplicacao hibrida para submissao de projetos, avaliacao, credenciamento, anais e certificados verificaveis.</p>
+                    <h3><a href="https://mocitec.com.br" target="_blank" rel="noopener noreferrer">MOCITEC<i class="fa-solid fa-arrow-up-right-from-square link-icon" aria-hidden="true"></i></a></h3>
+                    <p>Sistema para gerenciamento de eventos científicos com submissão de projetos, avaliação, credenciamento, anais e certificados verificáveis.</p>
+                    <div class="project-links" aria-label="Repositorio do MOCITEC">
+                        <span class="project-link-note">
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            Repo privado
+                        </span>
+                    </div>
                     <div class="tag-list">
-                        <span>PHP</span>
-                        <span>Express</span>
-                        <span>MySQL</span>
+                        <span>Eventos</span>
                     </div>
                 </article>
 
@@ -122,12 +169,17 @@
                         <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
                         <span>IFSul tooling</span>
                     </div>
-                    <h3>TrocaAula</h3>
-                    <p>Ferramenta para visualizar, ajustar e propor trocas de horarios com dados do EduPage, cache Redis e fluxo de aprovacao.</p>
+                    <h3><a href="https://trocaaula.sistemas.charqueadas.ifsul.edu.br" target="_blank" rel="noopener noreferrer">TrocaAula<i class="fa-solid fa-arrow-up-right-from-square link-icon" aria-hidden="true"></i></a></h3>
+                    <p>Ferramenta para visualizar, ajustar e propor trocas de horários com dados do EduPage, facilitando a organização de horários e a comunicação entre professores.</p>
+                    <div class="project-links" aria-label="Repositorio do TrocaAula">
+                        <span class="project-link-note">
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            Repo privado
+                        </span>
+                    </div>
                     <div class="tag-list">
-                        <span>Express</span>
-                        <span>Redis</span>
                         <span>EduPage</span>
+                        <span>Agendamento</span>
                     </div>
                 </article>
             </div>
@@ -186,7 +238,7 @@
         </section>
     </main>
     <footer class="site-footer">
-        <span>Pablo Werlang</span>
+        <span><a href="mailto:pablo@werlang.dev.br">Pablo Werlang</a></span>
         <span>Desenvolvimento, ensino e sistemas web | {{year}}</span>
     </footer>
 </body>
