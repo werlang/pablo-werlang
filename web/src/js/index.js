@@ -34,13 +34,17 @@ function bindSectionHighlighter() {
 }
 
 /**
- * Reveals marked content as it enters the viewport to keep the long page feeling active.
+ * Reveals large page blocks as they enter the viewport.
  */
-function bindRevealAnimations() {
-    const revealItems = [...document.querySelectorAll('[data-reveal]')];
+function bindViewportReveal() {
+    const revealBlocks = [...document.querySelectorAll('.reveal-block')];
 
-    if (!('IntersectionObserver' in window) || revealItems.length === 0) {
-        revealItems.forEach(item => item.classList.add('is-visible'));
+    if (revealBlocks.length === 0) {
+        return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+        revealBlocks.forEach(block => block.classList.add('is-visible'));
         return;
     }
 
@@ -55,11 +59,11 @@ function bindRevealAnimations() {
         });
     }, {
         rootMargin: '0px 0px -12% 0px',
-        threshold: 0.18,
+        threshold: 0.16,
     });
 
-    revealItems.forEach(item => observer.observe(item));
+    revealBlocks.forEach(block => observer.observe(block));
 }
 
 bindSectionHighlighter();
-bindRevealAnimations();
+bindViewportReveal();
