@@ -85,7 +85,6 @@
 }
 
 .hero-actions,
-.contact-links,
 .teaching-links,
 .tag-list,
 .project-links {
@@ -95,7 +94,6 @@
 }
 
 .button,
-.contact-links a,
 .teaching-links a {
     display: inline-flex;
     align-items: center;
@@ -126,7 +124,6 @@
 }
 
 .button.secondary,
-.contact-links a,
 .teaching-links a {
     border: 1px solid rgb(from var(--color-ink) r g b / 0.14);
     background: var(--color-alt-contrast);
@@ -136,8 +133,6 @@
 
 .button.secondary:hover,
 .button.secondary:focus-visible,
-.contact-links a:hover,
-.contact-links a:focus-visible,
 .teaching-links a:hover,
 .teaching-links a:focus-visible {
     border-color: rgb(from var(--color-main) r g b / 0.28);
@@ -148,7 +143,6 @@
 }
 
 .button:active,
-.contact-links a:active,
 .teaching-links a:active {
     transform: translateY(0) scale(0.98);
 }
@@ -218,7 +212,7 @@
 .section-band,
 .split-section,
 .teaching-section,
-.contact-section {
+.materials-section {
     scroll-margin-top: 86px;
 }
 
@@ -231,7 +225,7 @@
 
 .section-heading p,
 .teaching-copy p,
-.contact-section p {
+.materials-section p {
     color: var(--color-text-secondary);
 }
 
@@ -415,7 +409,7 @@ h3 a {
 }
 
 .teaching-section,
-.contact-section {
+.materials-section {
     display: grid;
     gap: var(--space-5);
     align-items: center;
@@ -618,12 +612,11 @@ h3 a {
     padding-bottom: 0;
 }
 
-.contact-section {
+.materials-section {
     border-top: 1px solid rgb(from var(--color-ink) r g b / 0.12);
     padding-top: var(--space-6);
 }
 
-.contact-links a,
 .teaching-links a {
     justify-content: flex-start;
 }
@@ -688,8 +681,7 @@ h3 a {
     }
 
     .split-section,
-    .teaching-section,
-    .contact-section {
+    .teaching-section {
         grid-template-columns: 0.65fr 1.15fr;
     }
 
@@ -706,4 +698,120 @@ h3 a {
     .project-card.featured {
         grid-column: span 2;
     }
+}
+
+/* Materials Section */
+.materials-repo-action {
+    margin-top: var(--space-3);
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+}
+
+@media only screen and (min-width: 600px) {
+    .materials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .materials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.material-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border: 1px solid rgb(from var(--color-ink) r g b / 0.1);
+    border-radius: var(--radius);
+    background: var(--color-alt-contrast);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.material-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--color-main) 30%, rgb(from var(--color-ink) r g b / 0.1));
+    box-shadow: 0 10px 24px rgb(from var(--color-shadow-base) r g b / 0.1);
+}
+
+.material-card .card-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: color-mix(in srgb, var(--color-main) 12%, transparent);
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-4);
+    user-select: none;
+    transition: color 0.25s ease;
+}
+
+.material-card:hover .card-number {
+    color: color-mix(in srgb, var(--color-main-alt) 24%, transparent);
+}
+
+.material-card h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: var(--color-ink);
+    padding-right: 48px;
+    transition: color 0.25s ease;
+}
+
+.material-card:hover h3 {
+    color: var(--color-main);
+}
+
+.material-card p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.material-card .card-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}
+
+.material-card .card-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    min-height: 38px;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid rgb(from var(--color-ink) r g b / 0.14);
+    border-radius: var(--radius-sm);
+    background: var(--color-alt-contrast);
+    color: var(--color-ink);
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: all 180ms ease;
+}
+
+.material-card .card-actions a:hover,
+.material-card .card-actions a:focus-visible {
+    border-color: rgb(from var(--color-main) r g b / 0.28);
+    background: rgb(from var(--color-main) r g b / 0.08);
+    color: var(--color-main);
+}
+
+.material-card .card-actions a:active {
+    transform: scale(0.97);
 }
