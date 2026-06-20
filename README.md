@@ -8,9 +8,9 @@ O projeto foi criado a partir de `project-template`, mas agora roda como uma apl
 
 - Destaque principal para o perfil dev.
 - Projetos atuais: GladCode, AutoJudge, Owlracle, MOCITEC e TrocaAula.
-- Cards de projetos em andamento com links publicos de repositorio quando disponiveis e indicacao explicita para repositorios privados.
-- Secao academica para Programacao Web I.
-- Links publicos para GitHub, Lattes, AutoJudge e Owlracle.
+- Cards de projetos em andamento com links públicos de repositório quando disponíveis e indicação explícita para repositórios privados.
+- Seção acadêmica em formato visual, com marcos da trajetória docente no IFSul, áreas de atuação e participação em iniciativas como CharCode, GladCode, AutoJudge e MOCITEC.
+- Links públicos para GitHub, Lattes, AutoJudge e Owlracle.
 
 ## Fontes consultadas
 

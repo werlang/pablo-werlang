@@ -19,7 +19,7 @@ The page is intentionally static. Project descriptions are curated from the loca
 - Owlracle
 - MOCITEC
 - TrocaAula
-- Programacao Web I
+- Trajetória docente no IFSul, com marcos e blocos visuais
 
 Keep copy concise and developer-oriented. Academic information should support the professional profile without taking over the page.
 
