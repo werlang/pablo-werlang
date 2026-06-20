@@ -486,31 +486,47 @@ h3 a {
     position: absolute;
     top: var(--space-6);
     bottom: var(--space-6);
-    left: 36px;
+    left: 126px;
     width: 2px;
-    background: linear-gradient(180deg, var(--color-main), color-mix(in srgb, var(--color-main) 18%, white 82%));
-    opacity: 0.28;
+    background: linear-gradient(180deg, 
+        color-mix(in srgb, var(--color-main) 10%, transparent),
+        var(--color-main) 15%, 
+        var(--color-main) 85%, 
+        color-mix(in srgb, var(--color-main) 10%, transparent)
+    );
+    opacity: 0.35;
+    transform: translateX(-50%);
 }
 
 .journey-card {
     position: relative;
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
-    gap: var(--space-4);
+    grid-template-columns: 90px minmax(0, 1fr);
+    gap: var(--space-5);
     align-items: start;
+    cursor: default;
 }
 
 .journey-card::before {
     content: '';
     position: absolute;
-    top: 16px;
-    left: 30px;
-    width: 14px;
-    height: 14px;
-    border: 3px solid var(--color-main-contrast);
-    border-radius: 999px;
-    background: var(--color-main);
-    box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-main) 12%, transparent);
+    top: 18px;
+    left: 102px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--color-alt-contrast);
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 20%, transparent);
+    transform: translateX(-50%);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+.journey-card:hover::before {
+    transform: translateX(-50%) scale(1.35);
+    background: var(--color-main-alt);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-main-alt) 25%, transparent);
 }
 
 .journey-year {
@@ -518,32 +534,60 @@ h3 a {
     z-index: 1;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    padding: 0 8px;
-    border-radius: var(--radius-pill);
-    background: var(--color-ink);
-    color: var(--color-main-contrast);
+    justify-content: flex-end;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--color-main) 8%, var(--color-alt-contrast));
+    border: 1px solid color-mix(in srgb, var(--color-main) 12%, transparent);
+    color: var(--color-main);
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 700;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    width: fit-content;
+    justify-self: end;
+}
+
+.journey-card:hover .journey-year {
+    background: var(--color-main);
+    border-color: var(--color-main);
+    color: var(--color-main-contrast);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--color-main) 20%, transparent);
 }
 
 .journey-content {
     display: grid;
     gap: var(--space-2);
-    padding: var(--space-3) 0 var(--space-4);
-    border-bottom: 1px solid color-mix(in srgb, var(--color-main) 12%, white 88%);
+    padding: var(--space-3) 0 var(--space-5);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-main) 8%, white 92%);
     background: transparent;
+    transition: all 0.3s ease;
 }
 
 .journey-content h3 {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.journey-card:hover .journey-content h3 {
+    color: var(--color-main);
 }
 
 .journey-content p {
     margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+}
+
+.journey-card:hover .journey-content p {
+    color: var(--color-text);
 }
 
 .journey-card:last-of-type .journey-content {
@@ -591,6 +635,7 @@ h3 a {
 
     .journey-card {
         grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-2);
     }
 
     .journey-card::before,
@@ -600,6 +645,7 @@ h3 a {
 
     .journey-year {
         justify-self: flex-start;
+        margin-top: 0;
     }
 
 }
