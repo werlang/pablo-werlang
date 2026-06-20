@@ -114,7 +114,16 @@
 .button.primary {
     background: var(--color-ink);
     color: var(--color-main-contrast);
+    transition: all 140ms ease;
 }
+
+.button.primary:hover,
+.button.primary:focus-visible {
+    background: var(--color-main);
+    color: var(--color-main-contrast);
+    transform: translateY(-1px);
+}
+
 
 .button.secondary,
 .contact-links a,
@@ -122,6 +131,19 @@
     border: 1px solid rgb(from var(--color-ink) r g b / 0.14);
     background: var(--color-alt-contrast);
     color: var(--color-ink);
+    transition: all 140ms ease;
+}
+
+.button.secondary:hover,
+.button.secondary:focus-visible,
+.contact-links a:hover,
+.contact-links a:focus-visible,
+.teaching-links a:hover,
+.teaching-links a:focus-visible {
+    border-color: rgb(from var(--color-main) r g b / 0.28);
+    background: rgb(from var(--color-main) r g b / 0.08);
+    color: var(--color-main);
+    transform: translateY(-1px);
 }
 
 .profile-panel {
@@ -156,30 +178,34 @@
     color: var(--color-text-secondary);
 }
 
-.profile-facts {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.profile-contacts {
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--space-3);
     margin: 0;
 }
 
-.profile-facts div {
-    min-width: 0;
-    padding-top: var(--space-3);
-    border-top: 1px solid rgb(from var(--color-ink) r g b / 0.12);
+.profile-contacts a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid color-mix(in srgb, var(--color-border) 78%, white 22%);
+    border-radius: 999px;
+    background: color-mix(in srgb, white 86%, var(--color-background) 14%);
+    box-shadow: 0 12px 24px -24px color-mix(in srgb, var(--color-shadow) 45%, transparent);
+    color: var(--color-main);
+    font-size: 1.15rem;
+    transition: transform 140ms ease, color 140ms ease, background-color 140ms ease, border-color 140ms ease;
 }
 
-.profile-facts dt {
-    color: var(--color-text-secondary);
-    font-size: 0.76rem;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-.profile-facts dd {
-    margin: 3px 0 0;
-    overflow-wrap: anywhere;
-    font-weight: 800;
+.profile-contacts a:hover,
+.profile-contacts a:focus-visible {
+    background: color-mix(in srgb, var(--color-main) 12%, white 88%);
+    border-color: color-mix(in srgb, var(--color-main) 34%, white 66%);
+    color: var(--color-link);
+    transform: translateY(-1px);
 }
 
 .section-band,
@@ -276,11 +302,12 @@ h3 a {
     font-size: 0.77rem;
     font-weight: 700;
     line-height: 1.3;
+    transition: all 140ms ease;
 }
 
 .project-links a:hover {
-    border-color: rgb(from var(--color-main) r g b / 0.28);
-    background: rgb(from var(--color-main) r g b / 0.08);
+    border-color: color-mix(in srgb, var(--color-main) 34%, var(--color-background) 66%);
+    background: color-mix(in srgb, var(--color-main) 12%, var(--color-background) 88%);
     color: var(--color-main);
 }
 
@@ -328,6 +355,9 @@ h3 a {
 .stack-list article {
     padding-top: var(--space-4);
     border-top: 1px solid rgb(from var(--color-main-contrast) r g b / 0.16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
 }
 
 .teaching-section,
@@ -381,9 +411,6 @@ h3 a {
         font-size: 0.86rem;
     }
 
-    .profile-facts {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media only screen and (min-width: 760px) {
@@ -403,7 +430,7 @@ h3 a {
     .split-section,
     .teaching-section,
     .contact-section {
-        grid-template-columns: 0.85fr 1.15fr;
+        grid-template-columns: 0.65fr 1.15fr;
     }
 
     .stack-list {
