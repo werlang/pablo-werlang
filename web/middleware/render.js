@@ -2,6 +2,9 @@ import fs from 'fs/promises';
 import path from 'path';
 import Mustache from 'mustache';
 
+LANGUAGE_MIDDLEWARE_PATH = path.join(import.meta.dirname, './language.js');
+VIEW_PATH = path.join(import.meta.dirname, '../view');
+
 const defaultOptions = {
     sendToClient: true,
     language: false,
@@ -15,7 +18,7 @@ const defaultOptions = {
  * @returns {Promise<{loadLocale: Function, listen: Function}>}
  */
 const loadLanguageMiddleware = async () => {
-    const module = await import('./language.js');
+    const module = await import(LANGUAGE_MIDDLEWARE_PATH);
     return module.languageMiddleware;
 };
 
@@ -42,7 +45,7 @@ export const renderMiddleware = (fixedVars = {}, options = {}) => {
      * @returns {Promise<string>}
      */
     const readTemplate = async view => {
-        const templatePath = path.join(import.meta.dirname, '../view', `${view}.html`);
+        const templatePath = path.join(VIEW_PATH, `${view}.html`);
 
         if (!renderOptions.cache) {
             return fs.readFile(templatePath, 'utf8');
@@ -63,7 +66,7 @@ export const renderMiddleware = (fixedVars = {}, options = {}) => {
      */
     const clearRenderCache = view => {
         if (view) {
-            const templatePath = path.join(import.meta.dirname, '../view', `${view}.html`);
+            const templatePath = path.join(VIEW_PATH, `${view}.html`);
             templateCache.delete(templatePath);
             return;
         }
