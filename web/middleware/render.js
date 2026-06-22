@@ -1,33 +1,137 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
+import Mustache from 'mustache';
+
+const defaultOptions = {
+    sendToClient: true,
+    language: false,
+    cache: true,
+};
 
 /**
- * Middleware that attaches res.templateRender.
- * It compiles the Mustache view using res.render, saves the resulting HTML file
- * to the web/public/ directory, and sends the response.
+ * Loads the optional language middleware only for render middleware instances
+ * that explicitly enable language support.
+ *
+ * @returns {Promise<{loadLocale: Function, listen: Function}>}
  */
-export const renderMiddleware = (req, res, next) => {
-    res.templateRender = (view, templateVars = {}) => {
-        res.render(view, templateVars, (err, html) => {
-            if (err) {
-                console.error(`[renderMiddleware] Rendering error:`, err);
-                return next(err);
-            }
+const loadLanguageMiddleware = async () => {
+    const module = await import('./language.js');
+    return module.languageMiddleware;
+};
 
-            const publicDir = path.join(import.meta.dirname, '../public');
-            const targetPath = path.join(publicDir, `${view}.html`);
-
-            try {
-                if (!fs.existsSync(publicDir)) {
-                    fs.mkdirSync(publicDir, { recursive: true });
-                }
-                fs.writeFileSync(targetPath, html, 'utf8');
-            } catch (writeErr) {
-                console.error(`[renderMiddleware] Failed to write compiled static HTML to ${targetPath}:`, writeErr);
-            }
-
-            res.send(html);
-        });
+/**
+ * Adds a template-aware render helper that merges shared view variables with
+ * per-route values and optional namespace-scoped translations.
+ *
+ * @param {Record<string, unknown>} fixedVars Variables applied to every view.
+ * @param {{sendToClient?: boolean, language?: boolean, cache?: boolean}} options Rendering options.
+ * @returns {(req: object, res: object, next: Function) => void}
+ */
+export const renderMiddleware = (fixedVars = {}, options = {}) => {
+    const renderOptions = {
+        ...defaultOptions,
+        ...options,
     };
-    next();
+    const templateCache = new Map();
+    let languageMiddlewarePromise;
+
+    /**
+     * Reads a Mustache template and optionally stores it for future renders.
+     *
+     * @param {string} view View name without extension.
+     * @returns {Promise<string>}
+     */
+    const readTemplate = async view => {
+        const templatePath = path.join(import.meta.dirname, '../view', `${view}.html`);
+
+        if (!renderOptions.cache) {
+            return fs.readFile(templatePath, 'utf8');
+        }
+
+        if (!templateCache.has(templatePath)) {
+            templateCache.set(templatePath, await fs.readFile(templatePath, 'utf8'));
+        }
+
+        return templateCache.get(templatePath);
+    };
+
+    /**
+     * Clears one cached template or the complete render template cache.
+     *
+     * @param {string} [view] Optional view name without extension.
+     * @returns {void}
+     */
+    const clearRenderCache = view => {
+        if (view) {
+            const templatePath = path.join(import.meta.dirname, '../view', `${view}.html`);
+            templateCache.delete(templatePath);
+            return;
+        }
+
+        templateCache.clear();
+    };
+
+    return (req, res, next) => {
+        const attachRender = languageMiddleware => {
+            res.templateRender = async (view, templateVars = {}, languageNamespaces = []) => {
+                const runtimeVars = {
+                    ...fixedVars,
+                    ...templateVars,
+                };
+
+                let translations = {};
+                if (renderOptions.language) {
+                    const language = req.language;
+                    for (const namespace of languageNamespaces) {
+                        const translation = await languageMiddleware.loadLocale(language, namespace);
+                        translations = {
+                            ...translations,
+                            ...translation[language],
+                        };
+                    }
+                }
+
+                const viewVars = {
+                    ...runtimeVars,
+                    ...translations,
+                };
+
+                for (const key in viewVars) {
+                    if (viewVars[key] === undefined) {
+                        delete viewVars[key];
+                    }
+                }
+
+                const clientVars = renderOptions.sendToClient
+                    ? {
+                        'template-vars': `<script id="template-vars" type="application/json">${JSON.stringify(viewVars)}</script>`,
+                    }
+                    : {};
+
+                const template = await readTemplate(view);
+                const rendered = Mustache.render(template, {
+                    ...viewVars,
+                    ...clientVars,
+                });
+
+                res.send(rendered);
+            };
+
+            res.render = res.templateRender;
+            res.clearRenderCache = clearRenderCache;
+            next();
+        };
+
+        if (renderOptions.language) {
+            languageMiddlewarePromise ??= loadLanguageMiddleware();
+            languageMiddlewarePromise
+                .then(languageMiddleware => {
+                    languageMiddleware.listen()(req, res, () => attachRender(languageMiddleware));
+                })
+                .catch(next);
+            return;
+        }
+
+        attachRender();
+    };
 };

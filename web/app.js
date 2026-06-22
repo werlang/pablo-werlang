@@ -1,25 +1,17 @@
 import express from 'express';
-import mustacheExpress from 'mustache-express';
 import { renderMiddleware } from './middleware/render.js';
+import { router as indexRoute } from './route/index.js';
 
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || '0.0.0.0';
 
 const app = express();
 
-app.engine('html', mustacheExpress());
-app.set('view engine', 'html');
 app.set('views', `${import.meta.dirname}/view/`);
 
-app.use(renderMiddleware);
+app.use(renderMiddleware());
 
-app.get('/', (req, res) => {
-    res.templateRender('index', {
-        pageTitle: 'Pablo Werlang | Desenvolvedor e professor',
-        heading: 'Pablo Werlang',
-        year: new Date().getFullYear(),
-    });
-});
+app.use('/', indexRoute);
 
 app.use(express.static(`${import.meta.dirname}/public/`));
 
