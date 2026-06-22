@@ -7,5 +7,6 @@ playwright-report/
 web/public/js/
 web/public/css/
 web/public/assets/generated/
+web/public/*.html
 api/upload/
 npm-debug.log*
