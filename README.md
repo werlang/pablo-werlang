@@ -2,7 +2,7 @@
 
 Website pessoal para apresentar o perfil de desenvolvedor e o curriculo academico de Pablo Werlang, professor no IFSul Campus Charqueadas.
 
-O projeto foi criado a partir de `project-template`, mas agora roda como uma aplicacao web enxuta em `web/`: Express renderiza a pagina Mustache, Webpack compila os assets e Playwright faz o smoke test da home.
+O projeto foi criado a partir de `project-template`, mas agora roda como uma aplicacao web enxuta em `web/`: Express renderiza a pagina Mustache, Webpack compila CSS/JS e o build tambem gera `web/public/index.html` para publicacao estatica.
 
 ## Conteudo
 
@@ -27,10 +27,17 @@ npm run build
 npm run production
 ```
 
-Por padrao o Express roda na porta `3000`. Para escolher outra porta:
+Por padrao o Express escuta em `0.0.0.0:3000`. Para escolher outra porta:
 
 ```bash
 PORT=4173 npm run production
+```
+
+Para desenvolvimento com reload do servidor e Webpack Dev Server:
+
+```bash
+cd web
+npm run development
 ```
 
 ## Docker local
@@ -42,7 +49,23 @@ docker compose -f compose.dev.yaml up -d --build
 
 Abra `http://localhost`.
 
-O stack local sobe somente o servico `web`.
+O stack local sobe somente o servico `web`, exposto em `127.0.0.1:80`.
+
+## Build estatico e deploy
+
+O comando de build gera os bundles e renderiza a home estatica em `web/public/index.html`:
+
+```bash
+cd web
+npm run build
+```
+
+O deploy Cloudflare usa o projeto em `wrangler/`. O compose de deploy monta `web/public` como `/app/public` dentro do container, que e o diretorio configurado em `wrangler/wrangler.jsonc`.
+
+```bash
+docker compose -f compose.dev.yaml run --rm web npm run build
+docker compose -f compose.deploy.yaml run --rm --service-ports wrangler
+```
 
 ## Validacao
 
@@ -52,13 +75,13 @@ npm run build
 npm test
 ```
 
-O teste Playwright valida o render da home, a remocao das variaveis de template do DOM, os projetos principais e links publicos.
+Atualmente `npm test` executa o test runner nativo do Node (`node --test`). Nao ha suite automatizada em `web/tests/` neste checkout, entao alteracoes visuais devem ser validadas em navegador real nos tamanhos desktop e mobile.
 
 Para validar via Docker:
 
 ```bash
 docker compose -f compose.dev.yaml up -d --build
 docker exec pablo-werlang-web-1 npm run build
-docker compose -f compose.dev.yaml -f compose.playwright.yaml up -d playwright
-docker exec pablo-werlang-playwright-1 npx playwright test
 ```
+
+Depois de alterar `web/src/js/` ou `web/src/css/`, confirme que os arquivos gerados em `web/public/` foram atualizados.

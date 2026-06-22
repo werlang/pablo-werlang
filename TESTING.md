@@ -1,44 +1,56 @@
 # Testing Guide
 
-## Build Validation
+## Automated Checks
 
 ```bash
 cd web
 npm install
 npm run build
-```
-
-The build emits assets into `web/public/js/`, `web/public/css/`, and `web/public/assets/generated/`.
-
-## Browser Tests
-
-```bash
-cd web
 npm test
 ```
 
-The Playwright smoke tests in `web/tests/` verify:
+`npm run build` runs Webpack and then `web/build.js`, producing:
 
-- homepage render;
-- no stale `template-vars` runtime script;
-- main developer projects;
-- public GitHub and Lattes links.
+- `web/public/js/index.min.js`;
+- `web/public/css/index.min.css`;
+- `web/public/index.html`.
 
-For layout changes, also check desktop and mobile viewports in a real browser and confirm there is no horizontal overflow.
+`npm test` currently runs `node --test`. There are no checked-in tests under `web/tests/`, so this command is a sanity check for any future native Node tests, not a browser coverage signal.
 
-## Docker Validation
+## Docker Checks
 
-Use Docker when host Node is unavailable or when validating the container path:
+Use Docker when host Node/npm is unavailable or when validating the container path:
 
 ```bash
 docker compose -f compose.dev.yaml up -d --build
 docker exec pablo-werlang-web-1 npm run build
-docker compose -f compose.dev.yaml -f compose.playwright.yaml up -d playwright
-docker exec pablo-werlang-playwright-1 npx playwright test
+docker exec pablo-werlang-web-1 npm test
 ```
 
-The Playwright overlay reaches the web service at `http://web:3000` inside Docker.
+The only local service is `web`, exposed at `http://localhost`.
 
-## CSS Loading
+## Browser Review
 
-The stylesheet entrypoint is `web/src/css/index.css`. It imports `tokens.css` first, then `base.css`, then the small page layout rules.
+For HTML, CSS, or user-facing JS changes, inspect the page in a real browser after rebuilding.
+
+Check at least:
+
+- desktop width around 1440px;
+- mobile width around 390px;
+- no horizontal overflow;
+- hero/profile contacts, project cards, repository chips, and academic timeline remain readable;
+- section reveal behavior and active navigation still work.
+
+There is no checked-in Playwright compose overlay in this repo at the moment. Do not claim automated browser coverage unless a test suite is added and run.
+
+## Static Deploy Review
+
+Before deploy, verify that the generated static output exists:
+
+```bash
+test -f web/public/index.html
+test -f web/public/css/index.min.css
+test -f web/public/js/index.min.js
+```
+
+When CSS or JS source changes, rebuild before committing or deploying so `web/public/` stays in sync.

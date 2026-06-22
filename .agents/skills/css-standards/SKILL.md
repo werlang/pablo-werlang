@@ -7,7 +7,7 @@ description: Enforce the current web CSS architecture and warm editorial styling
 
 ## Scope
 
-Applies to the web client styles under `web/src/css/` and class names used in `web/view/*.html` and `web/src/js/components/*.js`.
+Applies to the web client styles under `web/src/css/` and class names used in `web/view/*.html` and `web/src/js/index.js`.
 
 ## Visual Direction
 
@@ -36,17 +36,16 @@ Applies to the web client styles under `web/src/css/` and class names used in `w
 
 ## Core Rules
 
-1. Keep page entry files such as `web/src/css/index.css` as composition layers: imports first, then only page-level layout and one-off page scaffolding.
-2. Each UI component must own its style file in `web/src/css/components/`; when a page entry starts carrying multiple component roots, extract them instead of extending the entry file.
-3. If a page-specific component is a contextual variant of a reusable component, keep the shared visual primitive in the reusable component file and let the page-specific file contain only contextual overrides, extra affordances, and container-specific states.
-4. If two or more page-scoped components share the same visual primitive and there is no clear reusable base component yet, extract a small shared partial for that page scope instead of duplicating rules or pushing them back into the entry file.
-5. Keep project-wide tokens in `web/src/css/tokens.css` under `:root`.
-6. Never hardcode palette colors, fonts, radii, or shadows in component files when an existing token already covers the need.
+1. Keep `web/src/css/index.css` as the entrypoint: imports only unless a tiny global composition rule is unavoidable.
+2. Keep project-wide tokens in `web/src/css/tokens.css` under `:root`.
+3. Keep font imports, reset rules, atmospheric background, global typography, and shared element defaults in `web/src/css/base.css`.
+4. Keep the current portfolio page styles in `web/src/css/portifolio.css`.
+5. Extract smaller CSS files only when there is a real reusable boundary; do not recreate generic template component folders just for ceremony.
+6. Never hardcode palette colors, fonts, radii, or shadows when an existing token already covers the need.
 7. For hover, focus, active, muted, and surface variations, prefer `color-mix(...)` with existing tokens.
-8. Prefer nested CSS selectors within each component file to keep styles colocated and scoped.
-9. Keep component-specific responsive rules in the same component file as the base styles they modify.
-10. Keep interactions visually soft: subtle lift, border shifts, and shadow changes are preferred over aggressive transforms or high-contrast effects.
-11. Do not introduce alternate icon systems or version-specific Font Awesome font-family strings in component CSS.
+8. Keep responsive rules close to the selectors they modify.
+9. Keep interactions visually soft: subtle lift, border shifts, and shadow changes are preferred over aggressive transforms or high-contrast effects.
+10. Do not introduce alternate icon systems or version-specific Font Awesome font-family strings in CSS.
 
 ## Token Usage
 
@@ -60,48 +59,45 @@ Use shared token names from `tokens.css`:
 - Feedback: `--color-info`, `--color-success`, `--color-warning`, `--color-error`
 - Structure: `--color-border`, `--color-shadow`, `--radius`, `--radius-sm`, `--radius-pill`
 
-## Component Language
+## Portfolio Language
 
-- `panel.css` should read as a paper surface: bright cards, soft borders, rounded edges, and careful shadows.
-- `button.css` uses an earthy, uppercase call-to-action language. Primary buttons lean green, ghost buttons stay surface-based.
-- `form.css` should keep form primitives clear and calm.
-- `toast.css` and status elements should stay compact, legible, and token-driven.
-- Compact metadata elements such as pills, chips, and session badges should feel crisp and intentional, not flashy.
-- If a special form control needs structural styling, prefer a small semantic class in HTML such as `.checkbox-field` rather than inline styles.
+- Hero, profile, project cards, repository chips, and academic timeline styles currently live in `portifolio.css`.
+- Cards should read as soft paper surfaces: bright backgrounds, warm borders, modest radius, and careful shadows.
+- Compact metadata elements such as pills, chips, tags, and contact links should feel crisp and intentional, not flashy.
+- Use semantic classes in HTML for new sections instead of inline styles.
 
 ## Organization Pattern
 
 - `tokens.css`: color, spacing, radius, and font primitives
 - `base.css`: reset, atmospheric background, global typography primitives, and font imports
-- `index.css`: imports tokens/base/component files plus home-page filter and empty-state rules
-- `components/*.css`: component-specific nested rules, including page-specific partials such as panel layouts, event rows, modal layouts, or small shared primitives when several components depend on the same base treatment
+- `index.css`: imports tokens/base/portfolio CSS
+- `portifolio.css`: portfolio page sections and responsive rules
 
-## Interaction with JS Components
+## Interaction with JS
 
-When a component has visual state changes, toggle CSS classes in JS instead of writing inline styles.
+When JS has visual state changes, toggle CSS classes instead of writing inline styles.
 
 Example pattern:
 
-- JS toggles `alert--error` / `alert--success`, `tab--active`, `form--disabled`, `session-badge--active`, `card--past`
-- CSS in the component file defines those variants with token-based colors and surface treatments
+- JS toggles `active` on navigation links and `is-visible` on reveal blocks
+- CSS in `portifolio.css` defines those variants with token-based colors and surface treatments
 
 ## Theming Guardrails
 
 - Prefer warm neutrals and soft contrast over dramatic dark/light clashes.
 - Keep gradients within the project palette and use them mainly for large branded surfaces.
 - Use `--font-display` only where hierarchy or brand presence matters; do not turn body copy into display text.
-- Preserve roomy spacing in forms and cards. The current UI should feel calmer and more breathable than the previous version.
-- When in doubt, match the tone of `base.css`, `panel.css`, and `button.css` before inventing a new pattern.
+- Preserve roomy spacing in cards and timeline sections. The current UI should feel calm and breathable.
+- When in doubt, match the tone of `base.css` and `portifolio.css` before inventing a new pattern.
 
 ## Review Checklist
 
-- Does each changed component map to a dedicated CSS file?
-- Does the page entry file stay slim and act as composition instead of owning leaf component blocks?
+- Does `index.css` remain an import-focused entrypoint?
+- Does the change belong in `tokens.css`, `base.css`, or `portifolio.css`?
 - Does the change preserve the warm editorial theme instead of drifting back to a dark or neon look?
 - Are all colors, fonts, radii, and shadows tokenized via `var(--...)` where appropriate?
 - Do icon treatments follow the shared Font Awesome setup and avoid ad hoc glyph systems or stale font-family names?
 - Are tone variants created with `color-mix(...)`?
-- Are nested selectors used for component internals/states?
-- Do responsive overrides stay colocated with the component they modify?
-- Are JS visual states represented by CSS classes (not inline styles)?
+- Do responsive overrides stay near the selectors they modify?
+- Are JS visual states represented by CSS classes instead of inline styles?
 - Do headings, badges, buttons, and surfaces still match the current typography and component language?

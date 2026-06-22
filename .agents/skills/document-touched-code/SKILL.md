@@ -1,6 +1,6 @@
 ---
 name: document-touched-code
-description: Add accurate JSDoc and focused comments when changing template code.
+description: Add accurate JSDoc and focused comments when changing portfolio code.
 ---
 
 # Document Touched Code
