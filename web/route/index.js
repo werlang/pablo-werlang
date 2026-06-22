@@ -14,7 +14,7 @@ const getIndexData = () => ({
 });
 
 router.get('/', (req, res) => {
-    return res.templateRender('index', getIndexData());
+    return res.render('index', getIndexData());
 });
 
 export { getIndexData, router };
