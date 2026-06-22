@@ -1,0 +1,14 @@
+services:
+    wrangler:
+        build: ./wrangler
+        volumes:
+            - ./wrangler:/app
+            - ./web/public:/app/public
+            - node_modules_wrangler:/app/node_modules
+        restart: unless-stopped
+        ports:
+            - 127.0.0.1:8787:8787 # Wrangler's default dev port is 8787 for HTTP
+            - 127.0.0.1:8976:8976 # Wrangler's port for WebSockets (needed for auth)
+        command: npm run deploy
+volumes:
+    node_modules_wrangler:

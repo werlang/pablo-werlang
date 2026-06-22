@@ -1,12 +1,15 @@
-.env
+# OS System files
 .DS_Store
+
+# Dependencies
 node_modules/
-tests/coverage/
-test-results/
-playwright-report/
+
+# Environment variables and configuration files
+.env
+
+# Build artifacts
+.wrangler
 web/public/js/
 web/public/css/
 web/public/assets/generated/
 web/public/*.html
-api/upload/
-npm-debug.log*

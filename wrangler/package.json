@@ -1,0 +1,16 @@
+{
+    "name": "pablo-werlang-website",
+    "version": "1.0.0",
+    "description": "Personal website about Pablo Werlang",
+    "type": "module",
+    "scripts": {
+        "start": "wrangler dev --ip 0.0.0.0",
+        "login": "wrangler login --callback-host 0.0.0.0 --callback-port 8976",
+        "deploy": "npm run login && wrangler deploy"
+    },
+    "author": "Pablo Werlang",
+    "license": "MIT",
+    "dependencies": {
+        "wrangler": "^4.103.0"
+    }
+}
