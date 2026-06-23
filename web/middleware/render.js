@@ -2,8 +2,8 @@ import fs from 'fs/promises';
 import path from 'path';
 import Mustache from 'mustache';
 
-LANGUAGE_MIDDLEWARE_PATH = path.join(import.meta.dirname, './language.js');
-VIEW_PATH = path.join(import.meta.dirname, '../view');
+const LANGUAGE_MIDDLEWARE_PATH = path.join(import.meta.dirname, './language.js');
+const VIEW_PATH = path.join(import.meta.dirname, '../view');
 
 const defaultOptions = {
     sendToClient: true,
