@@ -4,9 +4,53 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{pageTitle}}</title>
-    <meta name="description" content="Portfolio de desenvolvimento e perfil acadêmico de Pablo Werlang, professor no IFSul Campus Charqueadas.">
+    <meta name="description" content="Portfólio de software de Pablo Werlang. Projetos de automação, GladCode, AutoJudge e atuação como professor de desenvolvimento web no IFSul Charqueadas.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{{siteUrl}}}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{{siteUrl}}}">
+    <meta property="og:title" content="{{pageTitle}}">
+    <meta property="og:description" content="Portfólio de software de Pablo Werlang. Projetos de automação, GladCode, AutoJudge e atuação como professor de desenvolvimento web no IFSul Charqueadas.">
+    <meta property="og:image" content="{{{siteUrl}}}/assets/og-image.png">
+    <meta property="og:site_name" content="Pablo Werlang">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{{siteUrl}}}">
+    <meta name="twitter:title" content="{{pageTitle}}">
+    <meta name="twitter:description" content="Portfólio de software de Pablo Werlang. Projetos de automação, GladCode, AutoJudge e atuação como professor de desenvolvimento web no IFSul Charqueadas.">
+    <meta name="twitter:image" content="{{{siteUrl}}}/assets/og-image.png">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Styles and Scripts -->
     <link rel="stylesheet" href="/css/index.min.css">
     <script type="module" src="/js/index.min.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Pablo Werlang",
+      "url": "{{{siteUrl}}}",
+      "image": "https://github.com/werlang.png",
+      "jobTitle": "Professor e Desenvolvedor Software Full-Stack",
+      "worksFor": {
+        "@type": "EducationalOrganization",
+        "name": "IFSul Campus Charqueadas"
+      },
+      "sameAs": [
+        "https://github.com/werlang",
+        "https://www.linkedin.com/in/pablo-werlang-86120a175/",
+        "http://lattes.cnpq.br/6490709711099792"
+      ]
+    }
+    </script>
 </head>
 <body>
     <header class="site-header" data-nav-root>
@@ -31,7 +75,7 @@
                 </div>
             </div>
             <aside class="profile-panel reveal-block" aria-label="Resumo profissional">
-                <img class="profile-photo" src="https://github.com/werlang.png" alt="Foto de perfil de Pablo Werlang">
+                <img class="profile-photo" src="https://github.com/werlang.png" alt="Foto de perfil de Pablo Werlang" width="118" height="118" fetchpriority="high">
                 <div>
                     <p class="profile-name">Pablo Werlang</p>
                     <p class="profile-role">Software, educação e automação para resolver problemas reais.</p>

@@ -8,9 +8,10 @@ const router = express.Router();
  * @returns {{pageTitle: string, heading: string, year: number}}
  */
 const getIndexData = () => ({
-    pageTitle: 'Pablo Werlang | Desenvolvedor e professor',
+    pageTitle: 'Pablo Werlang | Desenvolvedor Full-Stack & Professor',
     heading: 'Pablo Werlang',
     year: new Date().getFullYear(),
+    siteUrl: process.env.SITE_URL || 'https://werlang.dev.br',
 });
 
 router.get('/', (req, res) => {
